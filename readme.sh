@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-cd ${hello-jenkinsfile}
-cmake .
-make
+cd /opt/ddd/ops/jenkins/hello-jenkinsfile
+cmake . -DCMAKE_BUILD_TYPE=Debug --build "/opt/ddd/ops/jenkins/hello-jenkinsfile" -B"/opt/ddd/ops/jenkins/hello-jenkinsfile/cmake-gcc"
+cd cmake-gcc && make
 export GTEST_OUTPUT="xml:/home/unittest-report"
 make test
