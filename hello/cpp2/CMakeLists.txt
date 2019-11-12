@@ -1,14 +1,12 @@
-cmake_minimum_required(VERSION 2.6)
+#cmake_minimum_required(VERSION 2.6)
 
-project(cpp2)
+#project(cpp2)
 
 ################################
 # GTest
 ################################
 
-ADD_SUBDIRECTORY (${CMAKE_CURRENT_SOURCE_DIR}/../../3rd/googletest)
-
-enable_testing()
+#ADD_SUBDIRECTORY (${CMAKE_CURRENT_SOURCE_DIR}/../../3rd/googletest)
 
 include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 
