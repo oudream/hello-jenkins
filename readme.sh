@@ -39,7 +39,7 @@ xwliqktnpykkbiea
 
 cd $WORKSPACE
 export GTEST_OUTPUT="xml:${WORKSPACE}/unittest-report"
-cmake . -DCMAKE_BUILD_TYPE=Debug --build "/opt/ddd/ops/jenkins/hello-jenkinsfile" -B"/opt/ddd/ops/jenkins/hello-jenkinsfile/cmake-gcc"
+cmake . -DCMAKE_BUILD_TYPE=Debug --build "${WORKSPACE}" -B"${WORKSPACE}/cmake-gcc"
 
 
 export GTEST_OUTPUT="xml:${WORKSPACE}/unittest-report"
