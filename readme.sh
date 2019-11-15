@@ -1,5 +1,13 @@
 #!/usr/bin/env bash
 
+### notice 注意 :
+### notice 注意 :
+# 全局配置邮件发送服务 : smtp 时参考 : https://www.jianshu.com/p/51ef5e012b25
+# git pull 下来的项目默认存放在 ~/.jenkins/workspace/
+# 在 JOB 中配置时，${WORKSPACE}是指 ~/.jenkins/workspace/projectName
+# 在 JOB 中配置xUnit -> google test -> Pattern 用的是相对路径。例如：build/cmake-gcc/unittest-report
+### notice 注意 .
+
 
 ### jenkins install :
 wget http://mirrors.jenkins.io/war-stable/latest/jenkins.war && \
@@ -32,20 +40,22 @@ warnings
 ### c++ 单元测试例子 :
 git clone https://github.com/oudream/hello-jenkinsfile.git
 
+H/2 * * * *
+
 cd /opt/ddd/ops/jenkins/hello-jenkinsfile
-cmake . -DCMAKE_BUILD_TYPE=Debug --build "/opt/ddd/ops/jenkins/hello-jenkinsfile" -B"/opt/ddd/ops/jenkins/hello-jenkinsfile/cmake-gcc"
-cd cmake-gcc && make
+cmake . -DCMAKE_BUILD_TYPE=Debug --build "/opt/ddd/ops/jenkins/hello-jenkinsfile" -B"/opt/ddd/ops/jenkins/hello-jenkinsfile/build/cmake-gcc"
+cd build/cmake-gcc && make
 export GTEST_OUTPUT="xml:/opt/ddd/tmp/unittest-report-cpp"
 make test
 
 
 cd $WORKSPACE
-export GTEST_OUTPUT="xml:${WORKSPACE}/cmake-gcc/unittest-report"
-cmake . -DCMAKE_BUILD_TYPE=Debug --build "${WORKSPACE}" -B"${WORKSPACE}/cmake-gcc"
+export GTEST_OUTPUT="xml:${WORKSPACE}/build/cmake-gcc/unittest-report"
+cmake . -DCMAKE_BUILD_TYPE=Debug --build "${WORKSPACE}" -B"${WORKSPACE}/build/cmake-gcc"
 
 
-export GTEST_OUTPUT="xml:${WORKSPACE}/cmake-gcc/unittest-report"
-cd ${WORKSPACE}/cmake-gcc
+export GTEST_OUTPUT="xml:${WORKSPACE}/build/cmake-gcc/unittest-report"
+cd ${WORKSPACE}/build/cmake-gcc
 make
 make test
 ### c++ 单元测试例子 .
