@@ -11,7 +11,7 @@
 
 ### jenkins install :
 wget http://mirrors.jenkins.io/war-stable/latest/jenkins.war && \
-java -jar jenkins.war --httpPort=2280
+java -jar jenkins.war --httpPort=2286
 ### jenkins install .
 
 
@@ -38,7 +38,7 @@ warnings
 
 
 ### c++ 单元测试例子 :
-git clone https://github.com/oudream/hello-jenkinsfile.git
+git clone https://github.com/oudream/hello-jenkins.git
 
 H/2 * * * *
 
@@ -67,3 +67,14 @@ http://senlinzhan.github.io/2017/10/08/gtest/
 
 ### cmake : gtest_add_tests
 # https://cmake.org/cmake/help/v3.10/module/GoogleTest.html
+
+
+### QA
+### How to reset Jenkins security settings from the command line?
+# https://stackoverflow.com/questions/6988849/how-to-reset-jenkins-security-settings-from-the-command-line
+# change true to false in /var/lib/jenkins/config.xml file.
+# <useSecurity>true</useSecurity>
+# to <useSecurity>false</useSecurity>
+vim ~/.jenkins/config.xml
+
+
